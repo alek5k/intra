@@ -14,7 +14,7 @@ pip install git+https://git@bitbucket.org/aleks_krnjaic/intra.git
 Does not provide the ability to customize which objects appear in the viewer. See picture in next section for an example of the UI.
 
 ```python
-from intra import quick_inspect
+from intra.ui import quick_inspect
 quick_inspect(object)
 ```
 
@@ -24,7 +24,8 @@ quick_inspect(object)
 Expanded way of introspecting and placing objects in the viewer. Provides more configurability.
 
 ```python
-from intra import introspect, IntraUI
+from intra.ui import IntraUI
+from intra.core import introspect
 
 # have some objects you want to analyze
 my_obj = SomeObject()
@@ -51,7 +52,8 @@ viewer.add(inspection2)
 For when you're only able to use the command line. Attempts to create a treeview with colors for each element type.
 
 ```python
-from intra import introspect, iprint
+from intra.core import introspect
+from intra.cmdline import iprint
 
 inspection1 = introspect(my_obj)
 iprint(inspection1)
