@@ -74,9 +74,6 @@ if __name__ == "__main__":
     print("\n\nNested object:\n\n")
     iprint(reinspected)
 
-    # To see what data the introspection actually stores, we can just introspect our introspections
-    inception = introspect(my_obj, recurse=True)
-    viewer2.add(inception)
 
     print('you can run your own blocking code while introspections are occurring on a separate thread.')
     while True:
