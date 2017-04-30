@@ -45,7 +45,7 @@ viewer.add(inspection1)
 viewer.add(inspection2)
 ```
 
-![ui inspection](examples/eg2.ui.PNG "UI inspection")
+![ui inspection](examples/example.ui.PNG "UI inspection")
 
 ## OPTION 3 - Command line only
 
@@ -58,7 +58,7 @@ from intra.cmdline import iprint
 inspection1 = introspect(my_obj)
 iprint(inspection1)
 ```
-![cmdline inspection](examples/eg2.cmdline.PNG "Command line inspection")
+![cmdline inspection](examples/example.cmdline.PNG "Command line inspection")
 
 ## ADDITIONAL
 
@@ -75,4 +75,4 @@ inspection = introspect(my_obj, recurse=True)
 
 You can right click the entries to further introspect nested objects. They will appear in a new window. You can also view the docstring of the attribute.
 
-![context menus](examples/eg2.nestedandcontextmenus.PNG "Context menus")
+![context menus](examples/example.nestedandcontextmenus.PNG "Context menus")

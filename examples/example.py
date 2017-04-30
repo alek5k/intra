@@ -1,47 +1,34 @@
 
-from intra import IntraUI, introspect, iprint
-from tkinter import *
-from tkinter import ttk
+from intra.core import introspect
+from intra.ui import IntraUI
+from intra.cmdline import iprint
 import time
 
-class Decoration:
+class AnotherObject:
     '''
-    A decoration!
-    '''
-    def __init__(self):
-        self.decorationtype = "paint"
-
-class Weapon:
-    '''
-    A weapon!
+    Another object
     '''
     def __init__(self):
-        self.weapon_damage = 3
+        self.anotherstring = "paint"
+        self.anotherbool = True
+        self.anothernumber = 55
 
-    def hit(self, who):
-        who.inflict(self.weapon_damage)
-
-    def decorate(self):
-        self.decoration = Decoration()
-
-class Adventurer:
+class SomeObject:
     '''
-    An adventurer!
+    An object with a description
     '''
     def __init__(self):
-        self.x = 3
-        self.y = 10
-        self.type = "Wizard"
-        self.stats = (12, 13,)
-        self.greetings = ['Ho there!', 'Hello!','Who goes there?']
-        self.spells = dict(spell1="blinding light", spell2="fire", spell3="zap")
-        self.iswizard = True
+        self.intattrib = 3
+        self.stringattrib = "objtype"
+        self.tupleattrib = (12, 13,)
+        self.listattrib = ['Ho there!', 'Hello!','Who goes there?']
+        self.dictattrib = dict(id1="aaa", id2="bbb", id3="ccc")
+        self.boolattrib = True
     
-    def get_weapon(self, weapon):
-        self.weapon = weapon
-        print("Acquired weapon with {0} damage!".format(self.weapon.weapon_damage))
+    def add_nested_object(self, nestedobj):
+        self.nestedobj = nestedobj
 
-    def do_something(self):
+    def some_other_method(self):
         pass
 
 
@@ -49,49 +36,47 @@ class Adventurer:
 ui = IntraUI()
 
 # have some objects you want to analyze
-gandalf = Adventurer()
-white_staff = Weapon()
+my_obj = SomeObject()
+another_obj = AnotherObject()
 
 # perform the introspection. This gives you an IntrospectionResult which you can then view via command line or UI.
-gandalf_inspected = introspect(gandalf)
-white_staff_inspected = introspect(white_staff)
+inspection1 = introspect(my_obj)
+inspection2 = introspect(another_obj)
 
 # lets view it using the UI. You can add multiple inspections to the same viewer.
-viewer = ui.createViewer("Before Gandalf Had Weapon")
-viewer.add(gandalf_inspected)
-viewer.add(white_staff_inspected)
+viewer = ui.createViewer("My Viewer Title")
+viewer.add(inspection1)
+viewer.add(inspection2)
 
 # lets modify the objects and reanalyze them
-white_staff.decorate()
-gandalf.get_weapon(white_staff)
+my_obj.add_nested_object(another_obj)
 
 # if you set the recurse flag to true, all sub-objects within the object being introspected will be traversed as well, recursively.
 #     Arguments:
 #    recurse -- whether to recurse through classes contained within the object. Good to use if there are no circular references within the object being analyzed.
-gandalf_inspected_again = introspect(gandalf, recurse=True)
+reinspected = introspect(my_obj, recurse=True)
 
 # View it using the UI. We'll create a new viewer here.
-viewer2 = ui.createViewer("After Gandalf Had Weapon")
-viewer2.add(gandalf_inspected_again)
+viewer2 = ui.createViewer("After adding a nested object")
+viewer2.add(reinspected)
 
 # you can print the introspection if you're using a shell. Pass the inspection to iprint.
 #    Arguments:
 #    pretty_print -- Whether to wrap the output in a border for easier debugging
 #    pretty_print_title -- What the wrapped output title will be
 
-iprint(gandalf_inspected)
-iprint(gandalf_inspected_again)
+print("\n\nTwo separate objects:\n\n")
+iprint(inspection1)
+iprint(inspection2)
+
+print("\n\nNested object:\n\n")
+iprint(reinspected)
 
 # To see what data the introspection actually stores, we can just introspect our introspections
-inception = introspect(gandalf_inspected, recurse=True)
-viewer2.add(inception)
+# inception = introspect(my_obj, recurse=True)
+# viewer2.add(inception)
 
-
-#### ALTERNATIVE:
-
-
-
+print('you can run your own blocking code while introspections are occurring on a separate thread.')
 while True:
-    print('hello!')
     time.sleep(5)
     pass
