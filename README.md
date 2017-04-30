@@ -3,7 +3,8 @@
 
 An introspection tool which can be used to browse see inside your python code objects.
 
-pip install git+ssh://git@bitbucket.org/username/projectname.git
+To pip install:
+pip install git+https://git@bitbucket.org/aleks_krnjaic/intra.git
 
 ## OPTION 1 - Quick Inspection 
 
