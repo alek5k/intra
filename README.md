@@ -1,6 +1,6 @@
 # INTROSPECTION
 
-An introspection tool which can be used to browse and see inside your python code objects.
+An introspection tool which can be used to browse and see inside your python code objects. Only python3 supported at the moment.
 
 To pip install:
 
