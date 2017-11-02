@@ -5,7 +5,7 @@ An introspection tool which can be used to browse and see inside your python cod
 To pip install:
 
 ```
-pip install git+https://your_username@bitbucket.org/aleks_krnjaic/intra.git
+pip install git+https://github.com/alek5k/intra.git
 ```
 
 ## OPTION 1 - Quick Inspection 
